@@ -14,8 +14,8 @@ public class IntegerFactorization {
     private static void factor(int x) {
         for (int i = 2; i < x; i++) {
             if (x % i == 0) {
+                res.add(i);
                 factor(x / i);
-                factor(i);
                 return;
             }
         }
@@ -23,7 +23,7 @@ public class IntegerFactorization {
     }
 
     public static void main(String[] args) {
-        factor(30);
+        factor(60);
         System.out.println(res);
     }
 }
