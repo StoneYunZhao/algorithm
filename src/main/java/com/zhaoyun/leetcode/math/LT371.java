@@ -6,7 +6,6 @@ package com.zhaoyun.leetcode.math;
  **/
 public final class LT371 {
     public int getSum(int a, int b) {
-        int c = a & b, d = a ^ b;
-        return c == 0 ? d : getSum(c << 1, d);
+        return a == 0 ? b : getSum((a & b) << 1, a ^ b);
     }
 }
