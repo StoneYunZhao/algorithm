@@ -39,13 +39,4 @@ public final class QuickSort implements Sort<Integer> {
         nums[i] = pivot;
         return i;
     }
-
-
-    public static void main(String[] args) {
-        Integer[] nums = new Integer[]{3, 4, 5, 1, 7, 3, 8, 9, 3, 10};
-        Sort<Integer> sort = new QuickSort();
-        sort.sort(nums);
-
-        System.out.println(Arrays.toString(nums));
-    }
 }
