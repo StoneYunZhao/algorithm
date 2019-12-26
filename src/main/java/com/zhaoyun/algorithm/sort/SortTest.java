@@ -9,11 +9,11 @@ import java.util.Arrays;
 public final class SortTest {
 
     public static void main(String[] args) {
-//        Sort<Integer> sort = new QuickSort();
 //        Sort<Integer> sort = new BubbleSort();
 //        Sort<Integer> sort = new InsertionSort();
 //        Sort<Integer> sort = new SelectionSort();
-        Sort<Integer> sort = new MergeSort();
+//        Sort<Integer> sort = new MergeSort();
+        Sort<Integer> sort = new QuickSort();
 
         Integer[] nums = new Integer[]{3, 4, 5, 1, 7, 3, 8, 9, 3, 10};
         sort.sort(nums);
