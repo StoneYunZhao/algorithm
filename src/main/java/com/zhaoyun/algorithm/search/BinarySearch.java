@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
+ * 最简单的二分查找，没有重复数据
+ *
  * Created by ZhaoYun on 2019-05-24
  **/
 public final class BinarySearch {
