@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 两个数组求交集
+ * 两个数组求交集，重复的显示一次
  *
  * @author zhaoyun
  * @Date: 2020/2/6
