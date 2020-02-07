@@ -3,9 +3,9 @@ package com.zhaoyun.leetcode.sort;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
- *
  * 数组 1 按照数组 2 的顺序排序
  *
  * @author zhaoyun
@@ -22,6 +22,63 @@ public final class LT1122 {
         System.out.println(Arrays.toString(result));
     }
 
+    /**
+     * TreeMap
+     */
+    public int[] relativeSortArray3(int[] arr1, int[] arr2) {
+        Map<Integer, Integer> map = new TreeMap<>();
+        for (int i: arr1) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+
+        int[] res = new int[arr1.length];
+        int cur = 0;
+        for (int i: arr2) {
+            while (map.get(i) > 0) {
+                map.put(i, map.get(i) - 1);
+                res[cur++] = i;
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> e: map.entrySet()) {
+            int v = e.getValue();
+            while ( v-- > 0) {
+                res[cur++] = e.getKey();
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * 计数排序
+     */
+    public int[] relativeSortArray2(int[] arr1, int[] arr2) {
+        int[] b = new int[1001];
+        for (int i : arr1) {
+            b[i]++;
+        }
+
+        int[] res = new int[arr1.length];
+        int cur = 0;
+        for (int i : arr2) {
+            while (b[i]-- > 0) {
+                res[cur++] = i;
+            }
+        }
+
+        for (int i = 0; i < 1001; i++) {
+            while (b[i]-- > 0) {
+                res[cur++] = i;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * 归并排序
+     */
     public int[] relativeSortArray(int[] arr1, int[] arr2) {
         final int n = arr2.length;
         final Map<Integer, Integer> w = new HashMap<>(n);
@@ -42,7 +99,7 @@ public final class LT1122 {
 
         int mid = (e + s) / 2;
         mergeSort(arr, s, mid, w);
-        mergeSort(arr, mid +1, e, w);
+        mergeSort(arr, mid + 1, e, w);
 
         int i = s, j = mid + 1, cur = 0;
         int[] a = new int[e - s + 1];
