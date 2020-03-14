@@ -1,4 +1,4 @@
-package com.zhaoyun.algorithm.list;
+package com.zhaoyun.leetcode.list;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -12,19 +12,19 @@ public final class RemoveRepeated {
     /**
      * 空间换时间的方式，通过一个 HashSet 存储所有的值
      */
-    private static void bySet(LNode head) {
+    private static void bySet(ListNode head) {
         if (head == null) {
             return;
         }
 
         Set<Integer> values = new HashSet<>();
 
-        LNode pre = head, cur = head.next;
+        ListNode pre = head, cur = head.next;
         while (cur != null) {
-            if (values.contains(cur.data)) {
+            if (values.contains(cur.val)) {
                 pre.next = cur.next;
             } else {
-                values.add(cur.data);
+                values.add(cur.val);
                 pre = cur;
             }
             cur = cur.next;
@@ -34,18 +34,18 @@ public final class RemoveRepeated {
     /**
      * 通过两层循环实现, 时间复杂度 O(n^2)
      */
-    private static void byTwoLoop(LNode head) {
+    private static void byTwoLoop(ListNode head) {
         if (head == null) {
             return;
         }
 
-        LNode cur = head.next;
+        ListNode cur = head.next;
         while (cur != null) {
-            Integer data = cur.data;
+            Integer data = cur.val;
             int count = 0;
-            LNode innerCur = head.next, pre = head;
+            ListNode innerCur = head.next, pre = head;
             while (innerCur != null) {
-                if (Objects.equals(innerCur.data, data)) {
+                if (Objects.equals(innerCur.val, data)) {
                     count++;
                 }
 
@@ -59,25 +59,5 @@ public final class RemoveRepeated {
             }
             cur = cur.next;
         }
-    }
-
-
-    public static void main(String[] args) {
-        int[] data = {1, 3, 1, 5, 5, 5, 7};
-
-        LNode head = new LNode(), cur = head;
-        for (int i : data) {
-            cur.next = new LNode(i);
-            cur = cur.next;
-        }
-
-        System.out.print("Before remove repeated: ");
-        LNode.printList(head);
-
-//        bySet(head);
-        byTwoLoop(head);
-
-        System.out.print("After removed repeated: ");
-        LNode.printList(head);
     }
 }
