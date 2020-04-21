@@ -100,4 +100,29 @@ public final class LT581 {
 
         return right - left - 1;
     }
+
+    public int findUnsortedSubarray3(int[] nums) {
+        assert nums != null && nums.length > 0;
+
+        int len = nums.length;
+
+        int max = nums[0], min = nums[len - 1];
+        int r = 0, l = len - 1;
+        for (int i = 0; i < len; i++) {
+            if (max > nums[i]) {
+                r = i;
+            } else {
+                max = nums[i];
+            }
+
+            int j = len - 1 - i;
+            if (min < nums[j]) {
+                l = j;
+            } else {
+                min = nums[j];
+            }
+        }
+
+        return r > l ? r - l + 1 : 0;
+    }
 }
