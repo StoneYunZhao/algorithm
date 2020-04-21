@@ -49,4 +49,55 @@ public final class LT581 {
 
         return right > left ? right - left + 1 : 0;
     }
+
+    public int findUnsortedSubarray2(int[] nums) {
+        assert nums != null && nums.length > 0;
+
+        int len = nums.length;
+        if (len == 1) {
+            return 0;
+        }
+
+        // 计算左边连续递增序列范围 [0, left]
+        int left = 0;
+        while (left < len - 1 && nums[left] <= nums[left + 1]) {
+            left++;
+        }
+
+        if (left == len - 1) {
+            return 0;
+        }
+
+        // 计算范围 [left + 1, len - 1] 的最小值
+        int min = nums[left + 1];
+        for (int i = left + 2; i < len; i++) {
+            min = Math.min(min, nums[i]);
+        }
+
+        // 找到 [0, left] 中第一个小于等于 min 的位置
+        for (; left >= 0; left--) {
+            if (nums[left] <= min) {
+                break;
+            }
+        }
+
+        // 找到右边连续递增范围 [right, len - 1]
+        int right = len - 1;
+        while (right > 0 && nums[right] >= nums[right - 1]) {
+            right--;
+        }
+
+        int max = nums[0];
+        for (int i = 1; i <= right - 1; i++) {
+            max = Math.max(max, nums[i]);
+        }
+
+        for (; right < len; right++) {
+            if (nums[right] >= max) {
+                break;
+            }
+        }
+
+        return right - left - 1;
+    }
 }
